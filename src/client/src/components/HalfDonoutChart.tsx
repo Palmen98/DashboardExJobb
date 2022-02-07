@@ -22,9 +22,6 @@ export default function HalfDonoutChart() {
   const options = {
     rotation: -90,
     circumference: 180,
-    title: {
-      display: true,
-    },
   };
 
   return (
