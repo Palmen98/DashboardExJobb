@@ -1,1 +1,1 @@
-import lib.ultraSonicSensor
+import IoT.lib.ultraSonicSensor

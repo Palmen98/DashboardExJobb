@@ -1,5 +1,5 @@
 import mysql.connector
-import keys
+import IoT.lib.keys as keys
 
 def ConnectDB():
     db = mysql.connector.connect(host = 'localhost',

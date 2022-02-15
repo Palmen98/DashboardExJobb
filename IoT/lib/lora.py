@@ -2,7 +2,7 @@ from network import LoRa
 import socket
 import time
 import ubinascii
-import keys
+import IoT.lib.keys as keys
 
 # Initialise LoRa in LORAWAN mode.
 # Please pick the region that matches where you are using the device:

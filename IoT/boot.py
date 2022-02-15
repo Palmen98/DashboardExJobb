@@ -1,1 +1,1 @@
-import lib.lora
+import IoT.lib.lora as lora
