@@ -1,5 +1,5 @@
 import mysql.connector
-import IoT.lib.keys as keys
+import keys as keys
 
 def ConnectDB():
     db = mysql.connector.connect(host = 'localhost',
@@ -26,8 +26,8 @@ def InsertDataToTable():
     db.commit()
 
 # Update data
-def UpdateData():
-    mycursor.execute('UPDATE Sensor SET data = 100 WHERE sensorID = 1')
+def UpdateData(data):
+    mycursor.execute('UPDATE Sensor SET data = $data WHERE sensorID = 1')
     db.commit()
 
 # Select a table
