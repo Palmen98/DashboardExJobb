@@ -1,4 +1,4 @@
-import keys as keys
+import IoT.lib.keys as keys
 import mysql.connector
 
 config = {
