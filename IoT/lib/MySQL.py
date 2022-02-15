@@ -9,13 +9,24 @@ db=mysql.connector.connect(host = 'localhost',
 
 
 mycursor = db.cursor()
-# mycursor.execute("CREATE TABLE Person (name VARCHAR(50), age smallint UNSIGNED, personID INT PRIMARY KEY AUTO_INCREMENT)")
 
-# mycursor.execute('INSERT INTO Person (name,age) VALUES (%s,%s)', ('Simon', 23))
+# Create table
+# mycursor.execute("CREATE TABLE Sensors (name VARCHAR(50), type VARCHAR(50), data int, sensorID INT PRIMARY KEY AUTO_INCREMENT)")
+
+# Create 
+# mycursor.execute('INSERT INTO Sensors (name,type) VALUES (%s,%s)', ('UltraSonicSensor', 'Distance measure'))
 # db.commit()
 
-mycursor.execute('SELECT * FROM Person')
+# Update
+# mycursor.execute('UPDATE Sensors SET data = 100 WHERE sensorID = 1')
+# db.commit()
 
+# Select a table
+mycursor.execute('SELECT * FROM Sensors')
 
+# Remove a table
+# mycursor.execute('DROP TABLE Person')
+
+# Loops through all data in table
 for x in mycursor:
     print(x)
