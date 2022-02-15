@@ -1,7 +1,21 @@
-import mysql.connector
 import keys as keys
+import mysql.connector
 
-def ConnectDB():
+config = {
+    'host': 'localhost',
+    'user': keys.MYSQL_USER,
+    'passwd': keys.MYSQL_PASSWORD,
+    'database': keys.MYSQL_DATABASE_NAME
+}
+
+def get_config():
+    return config
+
+def connect(): # connect to the mysql
+    cnx = mysql.connector.connect(**config)
+    return cnx, cnx.cursor()
+
+def connectDB():
     db = mysql.connector.connect(host = 'localhost',
     user = keys.MYSQL_USER,
     passwd = keys.MYSQL_PASSWORD,
@@ -9,36 +23,35 @@ def ConnectDB():
     )
     return db
 
-db = ConnectDB()    
-mycursor = db.cursor()
+cnx, cursor = connect()
 
 # Create database
-def CreateDB(): 
-    mycursor.execute('CREATE DATABASE ' + keys.MYSQL_DATABASE_NAME)
+def createDB(): 
+    cursor.execute('CREATE DATABASE ' + keys.MYSQL_DATABASE_NAME)
 
 # Create table
-def CreateTable():
-    mycursor.execute("CREATE TABLE Sensor (name VARCHAR(50), type VARCHAR(50), data int, sensorID INT PRIMARY KEY AUTO_INCREMENT)")
+def createTable():
+    cursor.execute("CREATE TABLE Sensor (name VARCHAR(50), type VARCHAR(50), data int, sensorID INT PRIMARY KEY AUTO_INCREMENT)")
 
 # Insert data into table
-def InsertDataToTable():
-    mycursor.execute('INSERT INTO Sensor (name,type) VALUES (%s,%s)', ('UltraSonicSensor', 'Distance measure'))
-    db.commit()
+def insertDataToTable():
+    cursor.execute('INSERT INTO Sensor (name,type) VALUES (%s,%s)', ('UltraSonicSensor', 'Distance measure'))
+    cnx.commit()
 
 # Update data
-def UpdateData(data):
-    mycursor.execute('UPDATE Sensor SET data = $data WHERE sensorID = 1')
-    db.commit()
+def updateData(data):
+    cursor.execute('UPDATE Sensor SET data = $data WHERE sensorID = 1')
+    cnx.commit()
 
 # Select a table
-def SelectDataFromTable():
-    mycursor.execute('SELECT * FROM Sensor')
+def selectDataFromTable():
+    cursor.execute('SELECT * FROM Sensor')
 
 # Remove a table
-def DeleteTable():
-    mycursor.execute('DROP TABLE Sensor')
+def deleteTable():
+    cursor.execute('DROP TABLE Sensor')
 
 # Loops through all data in the selected table
-SelectDataFromTable()
-for data in mycursor:
+selectDataFromTable()
+for data in cursor:
     print(data)
