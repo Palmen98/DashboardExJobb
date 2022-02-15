@@ -1,1 +1,1 @@
-import lib.Lora as lora
+import lib.lora

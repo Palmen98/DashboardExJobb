@@ -1,5 +1,5 @@
 import mysql.connector
-import Keys as keys
+import keys
 
 def ConnectDB():
     db = mysql.connector.connect(host = 'localhost',

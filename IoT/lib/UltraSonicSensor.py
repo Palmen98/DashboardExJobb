@@ -2,6 +2,7 @@ import utime
 import pycom
 import time
 from machine import Pin
+import mySQL
 
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
