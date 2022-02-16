@@ -3,6 +3,7 @@ import socket
 import time
 import ubinascii
 import IoT.lib.keys as keys
+import IoT.lib.light_manager as light_manager
 
 # Initialise LoRa in LORAWAN mode.
 # Please pick the region that matches where you are using the device:
@@ -33,10 +34,12 @@ lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
 
 # wait until the module has joined the network
 while not lora.has_joined():
+    light_manager.look_foor_connection() # show with light that it still looking
     print('Not yet joined...')
     time.sleep(3)
 
 print('Joined Network')
+light_manager.connected() # show with lights that it find network
 # create a LoRa socket
 s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
 
