@@ -50,8 +50,21 @@ def selectDataFromTable():
 # Remove a table
 def deleteTable():
     cursor.execute('DROP TABLE Sensor')
+    cnx.close()
 
-# Loops through all data in the selected table
-selectDataFromTable()
-for data in cursor:
-    print(data)
+def read_all_entrys(): # shows all rows in myslq database
+    cnx, cursor = connect()
+    cursor.execute("SELECT * FROM Sensor")
+    result = cursor.fetchall()
+    cnx.close()
+
+    for x in result:
+        print(x)
+
+try: # first time use will check if data exists if not create the table.
+    print('cheking entrys')
+    read_all_entrys()
+except:
+    createTable()
+    print('new empty table created')
+
