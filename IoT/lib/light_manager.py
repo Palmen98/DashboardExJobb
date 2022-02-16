@@ -25,4 +25,6 @@ def data_send(): # white blinking 4 times with 0.1 seconds on each
 
 def data_reserved(): # 1 second light blue light once
     _thread.start_new_thread(light, (1.5, 0x0000ff, 1))
-    
+
+def sendData(): # blue blinking 3 times with 0.2 seconds on each
+    _thread.start_new_thread(light, (0.2, 0x004600, 3))
