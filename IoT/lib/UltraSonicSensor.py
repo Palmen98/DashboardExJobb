@@ -2,6 +2,7 @@ import utime
 import pycom
 import time
 from machine import Pin
+import IoT.lib.mysql_handler as mysql
 
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
@@ -52,6 +53,7 @@ def distance_median():
 
     print(distance_samples)
 
+    mysql.updateData(int(distance_median))
     return int(distance_median)
 
 

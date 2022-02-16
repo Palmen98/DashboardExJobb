@@ -2,7 +2,7 @@ from network import LoRa
 import socket
 import time
 import ubinascii
-import lib.keys as keys
+import IoT.lib.keys as keys
 
 # Initialise LoRa in LORAWAN mode.
 # Please pick the region that matches where you are using the device:
@@ -46,9 +46,6 @@ s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)
 # make the socket blocking
 # (waits for the data to be sent and for the 2 receive windows to expire)
 s.setblocking(True)
-
-# send some data
-s.send(bytes([0x01, 0x02, 0x03]))
 
 # make the socket non-blocking
 # (because if there's no data received it will block forever...)
