@@ -47,9 +47,6 @@ s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)
 # (waits for the data to be sent and for the 2 receive windows to expire)
 s.setblocking(True)
 
-# send some data
-s.send(bytes([0x01, 0x02, 0x03]))
-
 # make the socket non-blocking
 # (because if there's no data received it will block forever...)
 s.setblocking(False)
