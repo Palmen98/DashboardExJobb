@@ -2,7 +2,8 @@ import utime
 import pycom
 import time
 from machine import Pin
-import IoT.lib.mysql_handler as mysql
+import IoT.lib.lora as lora
+import IoT.lib.light_manager as light_manager
 
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
@@ -52,9 +53,11 @@ def distance_median():
     # apply the function to scale to volts
 
     print(distance_samples)
+    distance = int(distance_median)
+    lora.s.send(bytes(distance))
+    light_manager.sendData()
 
-    mysql.updateData(int(distance_median))
-    return int(distance_median)
+    return distance
 
 
 
@@ -66,9 +69,8 @@ time.sleep(2)
 while True:
     # take distance measurment, turn the light blue when measuring
 	pycom.rgbled(0x00007d)
-	utime.sleep(1)
+	utime.sleep(5)
 	distance = distance_median()
-	pycom.rgbled(0x004600)
 
 	print("Distance:  ", distance)
 
