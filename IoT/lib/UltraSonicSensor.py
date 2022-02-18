@@ -39,6 +39,10 @@ def distance_measure():
     distance = ((utime.ticks_diff(finish, start)) * 0.034)/2
     return int(distance)
 
+def sendData(port, pin):
+    lora.s.bind(port)
+    lora.s.send(bytes(pin))
+
  # to reduce errors we take ten readings and use the median
 def distance_median():
     # initialise the list
@@ -54,8 +58,9 @@ def distance_median():
 
     print(distance_samples)
     distance = int(distance_median)
-    lora.s.send(bytes(distance))
+    sendData(20, distance)
     light_manager.sendData()
+    print('Sending data')
 
     return distance
 
