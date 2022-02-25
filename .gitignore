@@ -13,6 +13,9 @@
 # Icon must end with two \r
 Icon
 
+### IoT ###
+lib/keys.py
+lib/__pycache__
 
 # Thumbnails
 ._*

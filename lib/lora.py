@@ -2,8 +2,8 @@ from network import LoRa
 import socket
 import time
 import ubinascii
-import IoT.lib.keys as keys
-import IoT.lib.light_manager as light_manager
+import lib.keys as keys
+import lib.light_manager as light_manager
 
 # Initialise LoRa in LORAWAN mode.
 # Please pick the region that matches where you are using the device:

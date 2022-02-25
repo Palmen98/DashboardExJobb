@@ -2,8 +2,8 @@ import utime
 import pycom
 import time
 from machine import Pin
-import IoT.lib.lora as lora
-import IoT.lib.light_manager as light_manager
+import lib.lora as lora
+import lib.light_manager as light_manager
 
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
@@ -58,7 +58,7 @@ def distance_median():
 
     print(distance_samples)
     distance = int(distance_median)
-    sendData(20, distance)
+    # sendData(20, distance)
     light_manager.sendData()
     print('Sending data')
 
