@@ -58,7 +58,7 @@ def distance_median():
 
     print(distance_samples)
     distance = int(distance_median)
-    # sendData(20, distance)
+    sendData(20, distance)
     light_manager.sendData()
     print('Sending data')
 
@@ -74,7 +74,7 @@ time.sleep(2)
 while True:
     # take distance measurment, turn the light blue when measuring
 	pycom.rgbled(0x00007d)
-	utime.sleep(5)
+	utime.sleep(60)
 	distance = distance_median()
 
 	print("Distance:  ", distance)
