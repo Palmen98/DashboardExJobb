@@ -7,7 +7,7 @@ export default function DashboardCard() {
       <div className='px-5 pt-5'>
         <header className='flex justify-between items-start mb-2'>
           <h2 className='text-lg font-semibold text-slate-800 mb-2'>
-            Waste conatainer
+            Plastic container
           </h2>
         </header>
       </div>
