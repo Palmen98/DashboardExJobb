@@ -2,6 +2,7 @@ import React from 'react';
 import DashboardCard from '../components/DashboardCard';
 import EnvironmentalHouseActivity from '../components/EnvironmentalHouseActivity';
 import Navbar from '../components/Navbar';
+import PlasticBinGraph from '../components/PlasticBinGraph';
 
 import GoogleMapsLocation from '../components/GoogleMapsLocation';
 export default function Dashboard() {
@@ -18,6 +19,7 @@ export default function Dashboard() {
 
             <div className='grid grid-cols-12 gap-6'>
                 <DashboardCard />
+                <PlasticBinGraph />
                 <EnvironmentalHouseActivity />
             </div>
           </div>
