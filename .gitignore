@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,dotenv,windows,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,visualstudiocode,dotenv,windows,macos
 
+# Bash script
+rpi.sh
+
 ### dotenv ###
 .env
 
