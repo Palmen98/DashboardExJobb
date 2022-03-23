@@ -15,3 +15,4 @@ def connectToWifi():
     print('WiFi connected successfully')
     print(wlan.ifconfig())
     lm.connected()
+connectToWifi()
