@@ -2,8 +2,12 @@ import utime
 import pycom
 import time
 from machine import Pin
-import lib.lora as lora
-import lib.light_manager as light_manager
+import lora
+import light_manager
+import keys
+
+
+lora.startLoraConnection(keys.app_eui_distance_sensor, keys.app_key_distace_sensor, keys.dev_eui_distance_sensor)
 
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
@@ -74,7 +78,7 @@ time.sleep(2)
 while True:
     # take distance measurment, turn the light blue when measuring
 	pycom.rgbled(0x00007d)
-	utime.sleep(60)
+	utime.sleep(600)
 	distance = distance_median()
 
 	print("Distance:  ", distance)
