@@ -5,8 +5,6 @@ import lora
 import keys
 import light_manager
 
-lora.startLoraConnection(keys.app_eui_magnet_sensor, keys.app_key_magnet_sensor, keys.dev_eui_magnet_sensor)
-
 
 # wifi.connectToWifi()
 magnet = Pin('P18', mode=Pin.IN)
@@ -20,8 +18,8 @@ def start_magnet():
         magnetIsActive = magnet()
         if magnetIsActive == 0:
             print('Door open')
-            # sendData(18, magnetIsActive)
-            # light_manager.sendData()
-            # print('Sending data')
+            sendData(18, 10)
+            light_manager.sendData()
+            print('Sending data')
             time.sleep(10)
             # return magnetIsActive
