@@ -14,7 +14,7 @@ export default function LineChartActivity() {
                 method: 'GET'
               },
             )
-            console.log(response.json())
+            console.log(response)
             // const json = await response.json();
             // setActivityData(json)
             console.log(activityData)
