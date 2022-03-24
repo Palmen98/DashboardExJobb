@@ -10,10 +10,11 @@ export default function LineChartActivity() {
         try {
             const response = await fetch(
               'https://environmental-house-dashboard.firebaseapp.com/api/magnet', {
-                mode: 'no-cors'
+                mode: 'no-cors',
+                method: 'GET'
               },
             )
-            console.log(response)
+            console.log(response.json())
             // const json = await response.json();
             // setActivityData(json)
             console.log(activityData)
