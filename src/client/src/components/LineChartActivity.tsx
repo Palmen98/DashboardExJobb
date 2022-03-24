@@ -3,18 +3,26 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 export default function LineChartActivity() {
-  const [ActivityData, setActivityData] = useState()
+  const [activityData, setActivityData] = useState()
 
   useEffect(() => {
-    const activityData = fetch('https://environmental-house-dashboard.firebaseapp.com/api/magnet')
-    .then(response => response.json())
-    .then(data => setActivityData(data));
-    console.log(activityData)
-    console.log(ActivityData)
-    return () => {
-      
-    }
-  }, [])
+    async function fetchData() {
+        try {
+            const response = await fetch(
+              'https://environmental-house-dashboard.firebaseapp.com/api/magnet', {
+                mode: 'no-cors'
+              },
+            )
+            console.log(response)
+            // const json = await response.json();
+            // setActivityData(json)
+            console.log(activityData)
+        } catch (e) {
+            console.error(e);
+        }
+    };
+    fetchData();
+}, []);
   
     
 
