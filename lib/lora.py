@@ -5,28 +5,12 @@ import ubinascii
 import lib.keys as keys
 import lib.light_manager as light_manager
 
-# Initialise LoRa in LORAWAN mode.
-# Please pick the region that matches where you are using the device:
-# Asia = LoRa.AS923
-# Australia = LoRa.AU915
-# Europe = LoRa.EU868
-# United States = LoRa.US915
 lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868)
-
 # create an OTAA authentication parameters, change them to the provided credentials
-app_eui = ubinascii.unhexlify(keys.app_eui)
-app_key = ubinascii.unhexlify(keys.app_key)
+app_eui = ubinascii.unhexlify('6081F9084EE1021D')
+app_key = ubinascii.unhexlify('07CCC60610D552B22AFA12E29B685D8B')
 #uncomment to use LoRaWAN application provided dev_eui
-dev_eui = ubinascii.unhexlify(keys.dev_eui)
-
-# Uncomment for US915 / AU915 & Pygate
-# for i in range(0,8):
-#     lora.remove_channel(i)
-# for i in range(16,65):
-#     lora.remove_channel(i)
-# for i in range(66,72):
-#     lora.remove_channel(i)
-
+# dev_eui = ubinascii.unhexlify(device_dev_eui)
 # join a network using OTAA (Over the Air Activation)
 #uncomment below to use LoRaWAN application provided dev_eui
 lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
@@ -57,3 +41,4 @@ s.setblocking(False)
 # get any data received (if any...)
 data = s.recv(64)
 print(data)
+
