@@ -3,6 +3,7 @@ import DashboardCard from '../components/DashboardCard';
 import EnvironmentalHouseActivity from '../components/EnvironmentalHouseActivity';
 import Navbar from '../components/Navbar';
 import PlasticBinGraph from '../components/PlasticBinGraph';
+import FirebaseDB from '../DB/FirebaseDB';
 
 import GoogleMapsLocation from '../components/GoogleMapsLocation';
 export default function Dashboard() {
@@ -13,7 +14,6 @@ export default function Dashboard() {
           <nav>
             <Navbar />
           </nav>
-              {/* <GoogleMapsLocation /> */}
           <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
             <div className='sm:flex sm:justify-between sm:items-center mb-8'></div>
 
