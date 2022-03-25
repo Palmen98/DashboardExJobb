@@ -3,7 +3,6 @@ import DashboardCard from '../components/DashboardCard';
 import EnvironmentalHouseActivity from '../components/EnvironmentalHouseActivity';
 import Navbar from '../components/Navbar';
 import PlasticBinGraph from '../components/PlasticBinGraph';
-import FirebaseDB from '../DB/FirebaseDB';
 
 import GoogleMapsLocation from '../components/GoogleMapsLocation';
 export default function Dashboard() {
