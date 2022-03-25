@@ -1,9 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
+import {db} from '../DB/FirebaseDBConfig'
+import { uid } from 'uid'
+import {set, ref} from 'firebase/database'
+
 
 export default function LineChartActivity() {
   const [activityData, setActivityData] = useState()
+
+  const writeToDB = (actvity:any) => {
+    const uuid = uid()
+    set(ref(db, `/${uuid}`), {
+    actvity,
+    uuid,
+    })
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -14,6 +26,8 @@ export default function LineChartActivity() {
                 method: 'GET'
               },
             )
+
+            writeToDB(response.body)
             // console.log(response)
             // const json = await response.json();
             // setActivityData(json)
@@ -23,6 +37,7 @@ export default function LineChartActivity() {
         }
     };
     fetchData();
+  
 }, []);
   
     
