@@ -1,2 +1,3 @@
-/Distance_sensor.lib.keys
-/Magnet_sensor.lib.keys
+Distance_sensor/lib/keys.py
+
+Magnet_sensor/lib/keys.py
