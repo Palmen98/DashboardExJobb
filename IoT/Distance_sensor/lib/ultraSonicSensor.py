@@ -6,9 +6,6 @@ import lora
 import light_manager
 import keys
 
-
-lora.startLoraConnection(keys.app_eui_distance_sensor, keys.app_key_distace_sensor, keys.dev_eui_distance_sensor)
-
 # initialise Ultrasonic Sensor pins
 echo = Pin('P18', mode=Pin.IN)
 trigger = Pin('P20', mode=Pin.OUT)
