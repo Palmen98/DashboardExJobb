@@ -40,7 +40,7 @@ for (let index = 0; index < activityData.length; index++) {
   arrTimeStamps.push(changeTimestamp)
 }
 
-arrActivityTimes.sort((a,b) => a -b )
+arrActivityTimes.sort((a,b) => a - b )
 arrTimeStamps.reverse()
 
 
