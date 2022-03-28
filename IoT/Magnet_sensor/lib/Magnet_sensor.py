@@ -2,7 +2,6 @@ import time
 # import wifi
 from machine import Pin
 import lora 
-import keys
 import light_manager
 
 
@@ -21,5 +20,4 @@ def start_magnet():
             sendData(18, 10)
             light_manager.sendData()
             print('Sending data')
-            time.sleep(10)
-            # return magnetIsActive
+            time.sleep(30)
