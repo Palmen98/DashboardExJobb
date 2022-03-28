@@ -24,7 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f .env.development react-scripts start",
+    "build:dev":"env-cmd -f .env.development npm run build && firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "env-cmd": "^10.1.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.16"
   }
