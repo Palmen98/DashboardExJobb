@@ -18,7 +18,6 @@ export default function LineChart() {
               }
             },
           )
-    
           const json = await response.json();
           setDistanceData(json.results)
         } catch (e) {
