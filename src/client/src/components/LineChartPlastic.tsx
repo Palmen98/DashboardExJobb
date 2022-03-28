@@ -1,16 +1,63 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 export default function LineChart() {
+  const [distanceData, setDistanceData] = useState<any[]>([]);
+
+  useEffect(() => {
+
+    const fetchDistanceData = async () => {
+      try {
+          const response = await fetch(
+            `https://industrial.api.ubidots.com/api/v1.6/devices/${process.env.REACT_APP_DISTANCE_DEVICE_ID}/${process.env.REACT_APP_DISTANCE_VARIABLE}/values`, {
+              method: 'GET',
+              headers: {
+                'X-Auth-Token': `${process.env.REACT_APP_DISTANCE_TOKEN}`,
+                'Content-Type': 'application/json'
+              }
+            },
+          )
+    
+          const json = await response.json();
+          setDistanceData(json.results)
+        } catch (e) {
+          console.error(e);
+        }
+    };
+
+      fetchDistanceData();
+    
+  }, []);
+
+let arrDistanceData:number[] = [];
+let arrTimeStamps: string[] = [];
+
+
+for (let index = 0; index < distanceData.length; index++) {
+  let data = 0
+  if(distanceData[index].value === 0) {
+    data = (distanceData[index].value = 178)
+  } else {
+     data = 178 - distanceData[index].value
+  }
+  arrDistanceData.push(data)
+  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
+  arrTimeStamps.push(changeTimestamp)
+} 
+
+arrDistanceData.reverse()
+arrTimeStamps.reverse()
+
+
+
 
     const data:any = {
-        labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', 
-        '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+        labels: arrTimeStamps,
         datasets: [
           {
             label: 'Volume of waste Today',
-            data: [0, 0, 5, 10, 12, 170, 0, 27],
+            data: arrDistanceData,
             borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
             backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
             pointStyle: 'circle',
