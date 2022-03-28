@@ -1,54 +1,55 @@
 import React, {useEffect, useState} from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-import {db} from '../DB/FirebaseDBConfig'
-import { uid } from 'uid'
-import {set, ref} from 'firebase/database'
 
 
 export default function LineChartActivity() {
-  const [activityData, setActivityData] = useState()
+  const [activityData, setActivityData] = useState<any[]>([]);
 
-  const writeToDB = (actvity:any) => {
-    const uuid = uid()
-    set(ref(db, `/${uuid}`), {
-    actvity,
-    uuid,
-    })
-  };
 
-  useEffect(() => {
-    async function fetchData() {
-        try {
-            const response = await fetch(
-              'https://environmental-house-dashboard.firebaseapp.com/api/magnet', {
-                mode: 'no-cors',
-                method: 'GET'
-              },
-            )
+ useEffect(() => {
+  const fetchMagnetData = async () => {
+    try {
+        const response = await fetch(
+          `https://industrial.api.ubidots.com/api/v1.6/devices/${process.env.REACT_APP_MAGNET_DEVICE_ID}/${process.env.REACT_APP_MAGNET_VARIABLE}/values`, {
+            method: 'GET',
+            headers: {
+              'X-Auth-Token': `${process.env.REACT_APP_MAGNET_TOKEN}`,
+              'Content-Type': 'application/json'
+            }
+          },
+        )
 
-            writeToDB(response.body)
-            // console.log(response)
-            // const json = await response.json();
-            // setActivityData(json)
-            // console.log(activityData)
-        } catch (e) {
-            console.error(e);
-        }
-    };
-    fetchData();
+        const json = await response.json();
+        setActivityData(json.results)
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+    fetchMagnetData();
   
 }, []);
   
-    
+let arrActivityTimes:number[] = [];
+let arrTimeStamps: string[] = [];
+
+for (let index = 0; index < activityData.length; index++) {
+  arrActivityTimes.push(activityData[index].value)
+  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {hour: '2-digit', minute: '2-digit'}).format(activityData[index].timestamp)
+  arrTimeStamps.push(changeTimestamp)
+}
+
+arrActivityTimes.sort((a,b) => a -b )
+arrTimeStamps.reverse()
+
 
     const data:any = {
-        labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', 
-        '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+        labels: arrTimeStamps,
         datasets: [
           {
             label: 'Activity Today',
-            data: [0, 0, 5, 10, 12, 170, 0, 27],
+            data: arrActivityTimes,
             borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
             backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
             pointStyle: 'circle',
@@ -73,7 +74,6 @@ export default function LineChartActivity() {
         }
       };
 
-  
 
   return (
     <div>
