@@ -75,7 +75,7 @@ time.sleep(2)
 while True:
     # take distance measurment, turn the light blue when measuring
 	pycom.rgbled(0x00007d)
-	utime.sleep(600)
+	utime.sleep(1800)
 	distance = distance_median()
 
 	print("Distance:  ", distance)
