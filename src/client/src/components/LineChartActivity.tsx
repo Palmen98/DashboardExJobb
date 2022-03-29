@@ -34,10 +34,15 @@ export default function LineChartActivity() {
 let arrActivityTimes:number[] = [];
 let arrTimeStamps: string[] = [];
 
+let todaysDate = new Date().getDate()
+
 for (let index = 0; index < activityData.length; index++) {
   arrActivityTimes.push(activityData[index].value)
-  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {hour: '2-digit', minute: '2-digit'}).format(activityData[index].timestamp)
-  arrTimeStamps.push(changeTimestamp)
+  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day:'2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(activityData[index].timestamp)
+
+  if(todaysDate === Number(changeTimestamp.slice(0,2))) {
+    arrTimeStamps.push(changeTimestamp)
+  }
 }
 
 arrActivityTimes.sort((a,b) => a - b )

@@ -31,7 +31,7 @@ export default function LineChart() {
 
 let arrDistanceData:number[] = [];
 let arrTimeStamps: string[] = [];
-
+let todaysDate = new Date().getDate()
 
 for (let index = 0; index < distanceData.length; index++) {
   let data = 0
@@ -41,14 +41,15 @@ for (let index = 0; index < distanceData.length; index++) {
      data = 178 - distanceData[index].value
   }
   arrDistanceData.push(data)
-  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
-  arrTimeStamps.push(changeTimestamp)
+  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
+  console.log(changeTimestamp.slice(0,2))
+  if(todaysDate === Number(changeTimestamp.slice(0,2))) {
+    arrTimeStamps.push(changeTimestamp)
+  }
 } 
 
 arrDistanceData.reverse()
 arrTimeStamps.reverse()
-
-
 
 
     const data:any = {
