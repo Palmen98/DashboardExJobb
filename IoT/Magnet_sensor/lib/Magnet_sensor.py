@@ -3,6 +3,7 @@ import time
 from machine import Pin
 import lora 
 import light_manager
+import sendHTTPrequest
 
 
 # wifi.connectToWifi()
@@ -20,4 +21,5 @@ def start_magnet():
             sendData(18, 10)
             light_manager.sendData()
             print('Sending data')
+            sendHTTPrequest.get()
             time.sleep(30)
