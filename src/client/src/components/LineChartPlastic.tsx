@@ -54,7 +54,7 @@ arrTimeStamps.reverse()
         labels: arrTimeStamps,
         datasets: [
           {
-            label: 'Volume of waste,Today Max=132  Min=0',
+            label: 'Max=132  Min=0',
             data: arrDistanceData,
             borderColor: ['rgba(255,99,132,1)'],
             backgroundColor: ['rgba(255, 99, 132, 0.2)'],
