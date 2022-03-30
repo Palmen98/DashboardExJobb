@@ -34,6 +34,9 @@ let arrTimeStamps: string[] = [];
 let todaysDate = new Date().getDate()
 
 for (let index = 0; index < distanceData.length; index++) {
+  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
+  if(todaysDate === Number(changeTimestamp.slice(0,2))) {
+  arrTimeStamps.push(changeTimestamp)
   let data = 0
   if(distanceData[index].value === 0) {
     data = (distanceData[index].value = 132)
@@ -41,12 +44,9 @@ for (let index = 0; index < distanceData.length; index++) {
      data = 132 - distanceData[index].value
   }
   arrDistanceData.push(data)
-  let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
-  if(todaysDate === Number(changeTimestamp.slice(0,2))) {
-    arrTimeStamps.push(changeTimestamp)
   }
 } 
-console.log(arrDistanceData)
+arrDistanceData.reverse()
 arrTimeStamps.reverse()
 
 
