@@ -42,7 +42,6 @@ for (let index = 0; index < distanceData.length; index++) {
   }
   arrDistanceData.push(data)
   let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
-  console.log(changeTimestamp.slice(0,2))
   if(todaysDate === Number(changeTimestamp.slice(0,2))) {
     arrTimeStamps.push(changeTimestamp)
   }
