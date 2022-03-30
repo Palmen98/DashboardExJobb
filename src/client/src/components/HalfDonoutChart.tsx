@@ -37,9 +37,9 @@ let arrDistanceData:number[] = [];
 for (let index = 0; index < distanceData.length; index++) {
   let data = 0
   if(distanceData[index].value === 0) {
-    data = distanceData[index].value + 178
+    data = distanceData[index].value = 132
   } else {
-      data = 178 - distanceData[index].value 
+      data = 132 - distanceData[index].value 
   }
   arrDistanceData.push(data)
 } 
@@ -48,7 +48,7 @@ for (let index = 0; index < distanceData.length; index++) {
   const data = {
     datasets: [
       {
-        data: [arrDistanceData[arrDistanceData.length -1], 178 - arrDistanceData[arrDistanceData.length - 1]],
+        data: [arrDistanceData[0], 132 - arrDistanceData[0]],
         backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
         borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)'],
       },

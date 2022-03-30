@@ -36,9 +36,9 @@ let todaysDate = new Date().getDate()
 for (let index = 0; index < distanceData.length; index++) {
   let data = 0
   if(distanceData[index].value === 0) {
-    data = (distanceData[index].value = 178)
+    data = (distanceData[index].value = 132)
   } else {
-     data = 178 - distanceData[index].value
+     data = 132 - distanceData[index].value
   }
   arrDistanceData.push(data)
   let changeTimestamp =  new Intl.DateTimeFormat('sv-SE', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).format(distanceData[index].timestamp)
@@ -46,8 +46,7 @@ for (let index = 0; index < distanceData.length; index++) {
     arrTimeStamps.push(changeTimestamp)
   }
 } 
-
-arrDistanceData.reverse()
+console.log(arrDistanceData)
 arrTimeStamps.reverse()
 
 
@@ -55,7 +54,7 @@ arrTimeStamps.reverse()
         labels: arrTimeStamps,
         datasets: [
           {
-            label: 'Volume of waste Today',
+            label: 'Volume of waste,Today Max=132  Min=0',
             data: arrDistanceData,
             borderColor: ['rgba(255,99,132,1)'],
             backgroundColor: ['rgba(255, 99, 132, 0.2)'],
